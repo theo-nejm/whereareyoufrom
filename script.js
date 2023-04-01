@@ -1,13 +1,13 @@
-const sayCep = document.getElementById("sayCep");
+const CEPInput = document.getElementById("sayCep");
 
 async function getCep() {
-  let sayYourCep = document.getElementById("field").value.replace("-", "");
-  const conditionCep = sayYourCep.lenght > 8;
-  if (sayYourCep === "") {
-    alert("Preencha campos")
+  const CEP = document.getElementById("field").value.replace("-", "");
+  const isValid = CEP.lenght > 8;
+  if (!CEP) {
+    alert("Preencha o campo de CEP")
   } else {
-    let res = await fetch(`https://viacep.com.br/ws/${sayYourCep}/json/`);
-    let data = await res.json();
+    const res = await fetch(`https://viacep.com.br/ws/${CEP}/json/`);
+    const data = await res.json();
     adressCompleted.innerText = `${data.localidade} - ${data.uf} - ${data.bairro}`;
     document.getElementById("field").value = "";
   }
